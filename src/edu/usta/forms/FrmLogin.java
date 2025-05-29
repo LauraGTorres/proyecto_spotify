@@ -74,6 +74,12 @@ public class FrmLogin extends javax.swing.JFrame {
         lblContraseña.setForeground(new java.awt.Color(255, 255, 255));
         lblContraseña.setText("Contraseña");
 
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+
         btnInicio.setBackground(new java.awt.Color(204, 204, 0));
         btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnInicio.setForeground(new java.awt.Color(0, 0, 102));
@@ -137,6 +143,10 @@ public class FrmLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     /**
      * @param args the command line arguments
