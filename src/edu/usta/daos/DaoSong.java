@@ -48,14 +48,11 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
 
 //Connection conn = MiConexion.getInstancia().getConexion();
     @Override
-    public List<canciones> consultar(String orden) {
+    public List<canciones> consultar() {
         try {
             miObjetoConexion = getConexion();
-            if (orden.isEmpty()) {
-                orden = "id_cancion";
-            }
-            miCadenaSQL = "SELECT id_cancion, id_genero, id_artista, titulo_cancion, duracion_cancion, archivo_cancion FROM canciones ORDER BY"
-                    + orden;
+           
+            miCadenaSQL = "SELECT id_cancion, id_genero, id_artista, titulo_cancion, duracion_cancion, archivo_cancion FROM canciones";
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
             misRegistros = miConsulta.executeQuery();
 
@@ -70,8 +67,8 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
                 BigDecimal duraSon = misRegistros.getBigDecimal(7);
                 byte[] archiPeso = misRegistros.getBytes(8);
 
-                artistas obArtista = new artistas();
-                generos objGenero = new generos(idGen, nomGenere, descGenere);
+               
+  
                 canciones objSong = new canciones(idSon, idGen, idArtis, tituloSon, duraSon, archiPeso);
 
                 arrySong.add(objSong);
@@ -91,7 +88,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
             miCadenaSQL = "SELECT c.id_cancion, c.id_genero, c.id_artista, "
                     + "c.titulo_cancion, c.duracion_cancion, c.archivo_cancion, "
                     + "g.id_genero, g.nombre_genero, g.descripcion_genero "
-                    + "FROM canciones c INNER JOIN generos_musicales g "
+                    + "FROM canciones c INNER JOIN generos g "
                     + "ON c.id_genero = g.id_genero "
                     + "WHERE c.id_cancion = ?";
 
@@ -167,11 +164,6 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
             Logger.getLogger(DaoSong.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
-    }
-
-    @Override
-    public Integer totalRegistros() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

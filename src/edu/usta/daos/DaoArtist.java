@@ -20,9 +20,10 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
     protected Connection miObjetoConexion;
     protected Integer miCantidad;
     protected PreparedStatement miConsulta;
+
     @Override
     public Boolean registrar(artistas elObjeto) {
-           try {
+         try {
             miCadenaSQL = "INSERT INTO artistas (id_artista, nombre_artista)"
                     + "VALUES(?, ?)";
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
@@ -36,7 +37,7 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
     }
 
     @Override
-    public List<artistas> consultar(String orden) {
+    public List<artistas> consultar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -52,11 +53,6 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
 
     @Override
     public Boolean actualizar(artistas objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Integer totalRegistros() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

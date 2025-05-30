@@ -7,7 +7,7 @@ public interface FuncionalidadCanArt<T> {
     
     public Boolean registrar(T elObjeto); 
     
-    public  List<T> consultar(String orden); 
+    public  List<T> consultar(); 
     
     public T buscar(Integer llavePrimaria); 
     
@@ -15,5 +15,6 @@ public interface FuncionalidadCanArt<T> {
     
     public  Boolean actualizar(T objeto); 
     
-    public Integer totalRegistros(); 
+    
+   
 }
