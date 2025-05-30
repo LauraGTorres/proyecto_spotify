@@ -29,6 +29,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
     @Override
     public Boolean registrar(canciones elObjeto) {
         try {
+            miObjetoConexion = getConexion();
             miCadenaSQL = "INSERT INTO canciones (id_cancion, id_genero, id_artista, titulo_cancion, duracion_cancion, archivo_cancion)"
                     + "VALUES(?, ?, ?, ?, ?, ?)";
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
@@ -49,6 +50,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
     @Override
     public List<canciones> consultar(String orden) {
         try {
+            miObjetoConexion = getConexion();
             if (orden.isEmpty()) {
                 orden = "id_cancion";
             }
@@ -85,6 +87,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
     @Override
     public canciones buscar(Integer llavePrimaria) {
         try {
+            miObjetoConexion = getConexion();
             miCadenaSQL = "SELECT c.id_cancion, c.id_genero, c.id_artista, "
                     + "c.titulo_cancion, c.duracion_cancion, c.archivo_cancion, "
                     + "g.id_genero, g.nombre_genero, g.descripcion_genero "
@@ -125,6 +128,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
     @Override
     public Boolean eliminar(Integer llaveprimaria) {
         try {
+            miObjetoConexion = getConexion();
             miCadenaSQL = "DELETE FROM canciones WHERE id_cancion=?";
             miConsulta = miObjetoConexion.prepareCall(miCadenaSQL);
 
@@ -142,6 +146,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
     @Override
     public Boolean actualizar(canciones objeto) {
         try {
+            miObjetoConexion = getConexion();
             miCadenaSQL = "UPDATE canciones SET id_genero = ?, id_artista = ?, titulo_cancion = ?, "
                     + "duracion_cancion = ?, archivo_cancion = ? WHERE id_cancion = ?";
 
