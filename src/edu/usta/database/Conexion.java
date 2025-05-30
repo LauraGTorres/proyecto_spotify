@@ -11,7 +11,7 @@ public class Conexion {
     private Connection conexion;
     
     
-
+ 
     private final String usuario = "root";
     private final String clave = "";
     private final String url = "jdbc:mysql://localhost:3306/spotify";
