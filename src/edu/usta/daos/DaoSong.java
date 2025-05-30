@@ -1,9 +1,12 @@
 package edu.usta.daos;
 
 import edu.usta.database.Conexion;
-import edu.usta.domain.Artist;
-import edu.usta.domain.Genere;
-import edu.usta.domain.Song;
+import edu.usta.domain.artistas;
+import edu.usta.domain.generos;
+import edu.usta.domain.canciones;
+import edu.usta.domain.artistas;
+import edu.usta.domain.canciones;
+import edu.usta.domain.generos;
 import edu.usta.interfaces.FuncionalidadCanArt;
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
+public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> {
 
     protected String miCadenaSQL;
     protected ResultSet misRegistros;
@@ -24,18 +27,18 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
     protected PreparedStatement miConsulta;
 
     @Override
-    public Boolean registrar(Song elObjeto) {
+    public Boolean registrar(canciones elObjeto) {
         try {
             miCadenaSQL = "INSERT INTO canciones (id_cancion, id_genero, id_artista, titulo_cancion, duracion_cancion, archivo_cancion)"
                     + "VALUES(?, ?, ?, ?, ?, ?)";
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
 
-            miConsulta.setInt(1, elObjeto.getIdCancion());
-            miConsulta.setInt(2, elObjeto.getIdGenero());
-            miConsulta.setInt(3, elObjeto.getIdArtista());
-            miConsulta.setString(4, elObjeto.getTituloCancion());
-            miConsulta.setBigDecimal(5, elObjeto.getDuracionCancion());
-            miConsulta.setBytes(6, elObjeto.getArchivoCancion());
+            miConsulta.setInt(1, elObjeto.getId_cancion());
+            miConsulta.setInt(2, elObjeto.getId_genero());
+            miConsulta.setInt(3, elObjeto.getId_artista());
+            miConsulta.setString(4, elObjeto.getTitulo_cancion());
+            miConsulta.setBigDecimal(5, elObjeto.getDuracion_cancion());
+            miConsulta.setBytes(6, elObjeto.getArchivo_cancion());
         } catch (SQLException ex) {
             Logger.getLogger(DaoSong.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -44,7 +47,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
 
 //Connection conn = MiConexion.getInstancia().getConexion();
     @Override
-    public List<Song> consultar(String orden) {
+    public List<canciones> consultar(String orden) {
         try {
             if (orden.isEmpty()) {
                 orden = "id_cancion";
@@ -54,7 +57,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
             misRegistros = miConsulta.executeQuery();
 
-            List<Song> arrySong = new ArrayList<>();
+            List<canciones> arrySong = new ArrayList<>();
             while (misRegistros.next()) {
                 int idSon = misRegistros.getInt(1);
                 int idGen = misRegistros.getInt(2);
@@ -65,9 +68,9 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
                 BigDecimal duraSon = misRegistros.getBigDecimal(7);
                 byte[] archiPeso = misRegistros.getBytes(8);
 
-                Artist obArtist = new Artist();
-                Genere objGenere = new Genere(idGen, nomGenere, descGenere);
-                Song objSong = new Song(idSon, idGen, idArtis, tituloSon, duraSon, archiPeso);
+                artistas obArtista = new artistas();
+                generos objGenero = new generos(idGen, nomGenere, descGenere);
+                canciones objSong = new canciones(idSon, idGen, idArtis, tituloSon, duraSon, archiPeso);
 
                 arrySong.add(objSong);
             }
@@ -80,7 +83,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
     }
 
     @Override
-    public Song buscar(Integer llavePrimaria) {
+    public canciones buscar(Integer llavePrimaria) {
         try {
             miCadenaSQL = "SELECT c.id_cancion, c.id_genero, c.id_artista, "
                     + "c.titulo_cancion, c.duracion_cancion, c.archivo_cancion, "
@@ -93,7 +96,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
             miConsulta.setInt(1, llavePrimaria);
             misRegistros = miConsulta.executeQuery();
 
-            Song objEncontrado = null;
+            canciones objEncontrado = null;
 
             if (misRegistros.next()) {
                 int idSon = misRegistros.getInt(1);
@@ -106,9 +109,9 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
                 byte archiSong = misRegistros.getByte(8);
                 byte[] archiPeso = {archiSong};
 
-                Artist objArtist = new Artist();
-                Genere objGenere = new Genere(idGen, nomGenere, descGenere);
-                objEncontrado = new Song(idSon, idGen, idArtis, tituloSon, duraSon, archiPeso);
+                artistas objArtista = new artistas();
+                generos objGenero = new generos(idGen, nomGenere, descGenere);
+                objEncontrado = new canciones(idSon, idGen, idArtis, tituloSon, duraSon, archiPeso);
             }
 
             miObjetoConexion.close();
@@ -137,18 +140,18 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<Song> {
     }
 
     @Override
-    public Boolean actualizar(Song objeto) {
+    public Boolean actualizar(canciones objeto) {
         try {
             miCadenaSQL = "UPDATE canciones SET id_genero = ?, id_artista = ?, titulo_cancion = ?, "
                     + "duracion_cancion = ?, archivo_cancion = ? WHERE id_cancion = ?";
 
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
-            miConsulta.setInt(1, objeto.getIdGenero());
-            miConsulta.setInt(2, objeto.getIdArtista());
-            miConsulta.setString(3, objeto.getTituloCancion());
-            miConsulta.setBigDecimal(4, objeto.getDuracionCancion());
-            miConsulta.setBytes(5, objeto.getArchivoCancion());
-            miConsulta.setInt(6, objeto.getIdCancion()); // WHERE
+            miConsulta.setInt(1, objeto.getId_cancion());
+            miConsulta.setInt(2, objeto.getId_artista());
+            miConsulta.setString(3, objeto.getTitulo_cancion());
+            miConsulta.setBigDecimal(4, objeto.getDuracion_cancion());
+            miConsulta.setBytes(5, objeto.getArchivo_cancion());
+            miConsulta.setInt(6, objeto.getId_cancion()); // WHERE
 
             miCantidad = miConsulta.executeUpdate();
             miObjetoConexion.close();
