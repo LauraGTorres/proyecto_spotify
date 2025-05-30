@@ -29,7 +29,21 @@ public class FrmUsers extends javax.swing.JFrame {
         panelUsuario = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();
         panelCuerpoUsuario = new javax.swing.JPanel();
+        panelBotones = new javax.swing.JPanel();
+        btnAñadirCancion = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
+        btnEliminarActual = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
+        btnCambiarLista = new javax.swing.JButton();
+        btnCambiarPremium = new javax.swing.JButton();
+        btnAdministrar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        lblUsuarioBienvenidos = new javax.swing.JLabel();
+        txtUsuarionBienvenidos = new javax.swing.JTextField();
+        lblTipo = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,28 +73,134 @@ public class FrmUsers extends javax.swing.JFrame {
 
         panelCuerpoUsuario.setBackground(new java.awt.Color(255, 204, 0));
 
+        panelBotones.setBackground(new java.awt.Color(0, 0, 102));
+
+        btnAñadirCancion.setText("🎧");
+
+        btnSiguiente.setText("▶️");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
+
+        btnAnterior.setText("⏮️");
+
+        btnEliminarActual.setText("🗑️");
+
+        btnMostrar.setText("📜");
+
+        btnCambiarLista.setText("🔁");
+
+        btnCambiarPremium.setText("⬆️");
+        btnCambiarPremium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarPremiumActionPerformed(evt);
+            }
+        });
+
+        btnAdministrar.setText("⚙️");
+
+        btnCerrar.setText("🔒");
+
+        javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
+        panelBotones.setLayout(panelBotonesLayout);
+        panelBotonesLayout.setHorizontalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotonesLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAñadirCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEliminarActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCambiarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCambiarPremium, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdministrar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelBotonesLayout.setVerticalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotonesLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(btnAñadirCancion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSiguiente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAnterior)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEliminarActual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMostrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCambiarLista)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCambiarPremium)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdministrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerrar)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelCuerpoUsuarioLayout = new javax.swing.GroupLayout(panelCuerpoUsuario);
         panelCuerpoUsuario.setLayout(panelCuerpoUsuarioLayout);
         panelCuerpoUsuarioLayout.setHorizontalGroup(
             panelCuerpoUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelCuerpoUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelCuerpoUsuarioLayout.setVerticalGroup(
             panelCuerpoUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 305, Short.MAX_VALUE)
+            .addGroup(panelCuerpoUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+
+        lblUsuarioBienvenidos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblUsuarioBienvenidos.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioBienvenidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsuarioBienvenidos.setText("Usuario:");
+
+        lblTipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTipo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTipo.setText("Tipo:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblUsuarioBienvenidos, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsuarionBienvenidos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(157, 157, 157)
+                .addComponent(lblTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsuarioBienvenidos)
+                    .addComponent(txtUsuarionBienvenidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTipo)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -103,11 +223,20 @@ public class FrmUsers extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelCuerpoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelCuerpoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCambiarPremiumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarPremiumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCambiarPremiumActionPerformed
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,9 +274,23 @@ public class FrmUsers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdministrar;
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnAñadirCancion;
+    private javax.swing.JButton btnCambiarLista;
+    private javax.swing.JButton btnCambiarPremium;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnEliminarActual;
+    private javax.swing.JButton btnMostrar;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUsuarioBienvenidos;
+    private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelCuerpoUsuario;
     private javax.swing.JPanel panelUsuario;
+    private javax.swing.JTextField txtUsuarionBienvenidos;
     // End of variables declaration//GEN-END:variables
 }
