@@ -88,6 +88,18 @@ public class FrmSuscribirse extends javax.swing.JFrame {
         lblSuscripcion.setForeground(new java.awt.Color(255, 255, 255));
         lblSuscripcion.setText("Suscripsión:");
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
+
         btnRegistrarse.setBackground(new java.awt.Color(204, 102, 0));
         btnRegistrarse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,6 +121,11 @@ public class FrmSuscribirse extends javax.swing.JFrame {
         });
 
         txtContrasena.setText("jPasswordField1");
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContrasenaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelSuscribirseLayout = new javax.swing.GroupLayout(panelSuscribirse);
         panelSuscribirse.setLayout(panelSuscribirseLayout);
@@ -235,6 +252,18 @@ public class FrmSuscribirse extends javax.swing.JFrame {
     txtRol.setText("");
     txtSuscripcion.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
