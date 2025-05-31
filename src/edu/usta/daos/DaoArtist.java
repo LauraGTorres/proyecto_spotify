@@ -1,4 +1,3 @@
-
 package edu.usta.daos;
 
 import edu.usta.database.Conexion;
@@ -8,12 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>{
+public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas> {
 
     protected String miCadenaSQL;
     protected ResultSet misRegistros;
@@ -23,13 +22,16 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
 
     @Override
     public Boolean registrar(artistas elObjeto) {
-         try {
+        try {
             miCadenaSQL = "INSERT INTO artistas (id_artista, nombre_artista)"
                     + "VALUES(?, ?)";
+            miObjetoConexion = getConexion();
+            miConsulta.executeUpdate();
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
 
             miConsulta.setInt(1, elObjeto.getId_artista());
             miConsulta.setString(2, elObjeto.getNombre_artista());
+            
         } catch (SQLException ex) {
             Logger.getLogger(DaoSong.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,12 +40,51 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
 
     @Override
     public List<artistas> consultar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            miObjetoConexion = getConexion();
+
+            miCadenaSQL = "SELECT id_artista, nombre_artista FROM artistas";
+            miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
+            misRegistros = miConsulta.executeQuery();
+            
+            List<artistas> arryArtist = new ArrayList<>(); 
+            
+            while (misRegistros.next()) {
+                int idArtis = misRegistros.getByte(0); 
+                String nomArtis = misRegistros.getString(1);
+                
+                artistas objArtist = new  artistas(idArtis, nomArtis);
+                arryArtist.add(objArtist); 
+            }
+            miObjetoConexion.close();
+            return arryArtist; 
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoArtist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null; 
     }
 
     @Override
     public artistas buscar(Integer llavePrimaria) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            miObjetoConexion = getConexion(); 
+            miCadenaSQL = "SELECT c.id_artista, c.nombre_artista FROM artistas WHERE id_artista = ?"; 
+            
+            miConsulta = miObjetoConexion.prepareCall(miCadenaSQL);
+            miConsulta.setInt(1, llavePrimaria);
+            misRegistros = miConsulta.executeQuery(); 
+            
+            artistas objEncontrado = null; 
+            
+            if (misRegistros.next()) {
+                int idArtis = misRegistros.getInt(1); 
+                String nomArtis = misRegistros.getString(2); 
+                
+            }
+            
+       } catch (Exception ex) {
+        }
+        return null; 
     }
 
     @Override
@@ -55,5 +96,5 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
     public Boolean actualizar(artistas objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

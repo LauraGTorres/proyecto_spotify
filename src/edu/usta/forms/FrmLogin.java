@@ -84,6 +84,11 @@ public class FrmLogin extends javax.swing.JFrame {
         btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnInicio.setForeground(new java.awt.Color(0, 0, 102));
         btnInicio.setText("Inicio");
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
         registrarse.setForeground(new java.awt.Color(255, 255, 255));
         registrarse.setText("¿No tienes cuenta? Registrate.");
@@ -147,6 +152,10 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
