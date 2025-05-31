@@ -31,7 +31,7 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
 
             miConsulta.setInt(1, elObjeto.getId_artista());
             miConsulta.setString(2, elObjeto.getNombre_artista());
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DaoSong.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -46,55 +46,86 @@ public class DaoArtist extends Conexion implements FuncionalidadCanArt<artistas>
             miCadenaSQL = "SELECT id_artista, nombre_artista FROM artistas";
             miConsulta = miObjetoConexion.prepareStatement(miCadenaSQL);
             misRegistros = miConsulta.executeQuery();
-            
-            List<artistas> arryArtist = new ArrayList<>(); 
-            
+
+            List<artistas> arryArtist = new ArrayList<>();
+
             while (misRegistros.next()) {
-                int idArtis = misRegistros.getByte(0); 
+                int idArtis = misRegistros.getByte(0);
                 String nomArtis = misRegistros.getString(1);
-                
-                artistas objArtist = new  artistas(idArtis, nomArtis);
-                arryArtist.add(objArtist); 
+
+                artistas objArtist = new artistas(idArtis, nomArtis);
+                arryArtist.add(objArtist);
             }
             miObjetoConexion.close();
-            return arryArtist; 
+            return arryArtist;
         } catch (SQLException ex) {
             Logger.getLogger(DaoArtist.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null; 
+        return null;
     }
 
     @Override
     public artistas buscar(Integer llavePrimaria) {
         try {
-            miObjetoConexion = getConexion(); 
-            miCadenaSQL = "SELECT c.id_artista, c.nombre_artista FROM artistas WHERE id_artista = ?"; 
-            
+            miObjetoConexion = getConexion();
+            miCadenaSQL = "SELECT c.id_artista, c.nombre_artista FROM artistas WHERE id_artista = ?";
+
             miConsulta = miObjetoConexion.prepareCall(miCadenaSQL);
             miConsulta.setInt(1, llavePrimaria);
-            misRegistros = miConsulta.executeQuery(); 
-            
-            artistas objEncontrado = null; 
-            
+            misRegistros = miConsulta.executeQuery();
+
+            artistas objEncontrado = null;
+
             if (misRegistros.next()) {
-                int idArtis = misRegistros.getInt(1); 
-                String nomArtis = misRegistros.getString(2); 
-                
+                int idArtis = misRegistros.getInt(1);
+                String nomArtis = misRegistros.getString(2);
+
+                artistas objArtis = new artistas();
             }
-            
-       } catch (Exception ex) {
+            miObjetoConexion.close();
+            return objEncontrado;
+
+        } catch (Exception ex) {
         }
-        return null; 
+        return null;
     }
 
     @Override
     public Boolean eliminar(Integer llaveprimaria) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            miObjetoConexion = getConexion();
+            miCadenaSQL = "DELETE FROM artitas WHERE id_artista=?";
+            miConsulta = miObjetoConexion.prepareCall(miCadenaSQL);
+
+            miConsulta.setInt(1, llaveprimaria);
+            miCantidad = miConsulta.executeUpdate();
+
+        } catch (Exception ex) {
+            Logger.getLogger(DaoArtist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
     public Boolean actualizar(artistas objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            miObjetoConexion = getConexion();
+            miCadenaSQL = "UPDATE artistas SET "
+                    + "nombre_artista = ? "
+                    + "WHERE id_artista = ?";
+
+            miConsulta.setInt(1, objeto.getId_artista());
+            miConsulta.setString(2, objeto.getNombre_artista());
+
+            miCantidad = miConsulta.executeUpdate();
+            miObjetoConexion.close();
+            
+             return miCantidad > 0;
+            
+        } catch (Exception e) {
+            Logger.getLogger(DaoArtist.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false; 
     }
 
 }

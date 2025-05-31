@@ -1,12 +1,7 @@
 package edu.usta.daos;
 
 import edu.usta.database.Conexion;
-import edu.usta.domain.artistas;
-import edu.usta.domain.generos;
 import edu.usta.domain.canciones;
-import edu.usta.domain.artistas;
-import edu.usta.domain.canciones;
-import edu.usta.domain.generos;
 import edu.usta.interfaces.FuncionalidadCanArt;
 import java.math.BigDecimal;
 import java.util.List;
@@ -124,8 +119,7 @@ public class DaoSong extends Conexion implements FuncionalidadCanArt<canciones> 
 
             miConsulta.setInt(1, llaveprimaria);
             miCantidad = miConsulta.executeUpdate();
-            miObjetoConexion.close();
-            return miCantidad > 0;
+            
 
         } catch (Exception ex) {
             Logger.getLogger(DaoSong.class.getName()).log(Level.SEVERE, null, ex);
